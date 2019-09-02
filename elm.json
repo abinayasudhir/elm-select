@@ -1,9 +1,9 @@
 {
     "type": "package",
-    "name": "sporto/elm-select",
+    "name": "abinayasudhir/elm-select",
     "summary": "A selection input with auto-completion",
     "license": "MIT",
-    "version": "3.1.2",
+    "version": "1.0.0",
     "exposed-modules": [
         "Select"
     ],

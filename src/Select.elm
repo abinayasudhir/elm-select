@@ -14,6 +14,7 @@ module Select exposing
     , newState, queryFromState
     , view
     , update
+    , withBlur
     )
 
 {-| Select input with auto-complete
@@ -594,6 +595,20 @@ withHighlightedItemStyles styles config =
     let
         fn c =
             { c | highlightedItemStyles = styles }
+    in
+    mapConfig fn config
+
+
+{-| Styles for the highlighted item
+
+    Select.withBlur True config
+
+-}
+withBlur : Bool -> Config msg item -> Config msg item
+withBlur blur config =
+    let
+        fn c =
+            { c | blur = blur }
     in
     mapConfig fn config
 

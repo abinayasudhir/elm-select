@@ -16,7 +16,7 @@ onBlurAttribute config state =
             Decode.at [ "relatedTarget", "attributes", referenceDataName, "value" ] Decode.string
 
         attrToMsg attr =
-            if attr == state.id then
+            if attr == state.id || config.blur == False then
                 NoOp
 
             else
@@ -25,6 +25,6 @@ onBlurAttribute config state =
         blur =
             Decode.maybe dataDecoder
                 |> Decode.map (Maybe.map attrToMsg)
-                |> Decode.map (Maybe.withDefault OnBlur)
+                |> Decode.map (Maybe.withDefault NoOp)
     in
     on "focusout" blur

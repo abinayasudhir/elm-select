@@ -20,7 +20,8 @@ type alias RequiredConfig msg item =
 
 
 type alias Config msg item =
-    { clearClass : String
+    { blur : Bool
+    , clearClass : String
     , clearStyles : List Style
     , clearSvgClass : String
     , cutoff : Maybe Int
@@ -69,7 +70,8 @@ type alias Config msg item =
 
 newConfig : RequiredConfig msg item -> Config msg item
 newConfig requiredConfig =
-    { clearClass = ""
+    { blur = True
+    , clearClass = ""
     , clearStyles = []
     , clearSvgClass = ""
     , emptySearch = False

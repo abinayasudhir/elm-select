@@ -31,7 +31,7 @@ See a full example of the select input in multi mode [here](https://github.com/s
 
 # Configuration
 
-@docs newConfig, withCutoff, withOnQuery, withEmptySearch, withTransformQuery
+@docs newConfig, withCutoff, withOnQuery, withEmptySearch, withTransformQuery, withBlur
 
 
 # Configure Multi Select mode

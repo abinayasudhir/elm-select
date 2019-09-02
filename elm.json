@@ -3,7 +3,7 @@
     "name": "abinayasudhir/elm-select",
     "summary": "A selection input with auto-completion",
     "license": "MIT",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "exposed-modules": [
         "Select"
     ],

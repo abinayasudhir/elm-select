@@ -14,7 +14,7 @@ module Select exposing
     , newState, queryFromState
     , view
     , update
-    , withBlur
+    , withBlur, withOnEnter
     )
 
 {-| Select input with auto-complete
@@ -31,7 +31,7 @@ See a full example of the select input in multi mode [here](https://github.com/s
 
 # Configuration
 
-@docs newConfig, withCutoff, withOnQuery, withEmptySearch, withTransformQuery, withBlur
+@docs newConfig, withCutoff, withOnQuery, withEmptySearch, withTransformQuery, withBlur, withOnEnter
 
 
 # Configure Multi Select mode
@@ -626,6 +626,19 @@ withOnQuery msg config =
     in
     mapConfig fn config
 
+
+{-| Add a callback for when the query changes
+
+    Select.withOnEnter OnEnter
+
+-}
+withOnEnter : (String -> msg) -> Config msg item -> Config msg item
+withOnEnter msg config =
+    let
+        fn c =
+            { c | onEnter = Just msg }
+    in
+    mapConfig fn config
 
 {-| Add a callback for when the input field receives focus
 

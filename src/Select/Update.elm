@@ -17,6 +17,15 @@ update config msg model =
                 Just constructor ->
                     Task.succeed value
                         |> Task.perform constructor
+
+        onEnterCmd query =
+            case config.onEnter of
+                Nothing ->
+                    Cmd.none
+
+                Just constructor ->
+                    Task.succeed (query)
+                        |> Task.perform constructor
     in
     case msg of
         NoOp ->
@@ -117,6 +126,9 @@ update config msg model =
                             queryChangeCmd newQuery
             in
             ( { model | highlightedItem = Nothing, query = Just value }, cmd )
+
+        OnEnter item ->
+            ( model, onEnterCmd (Maybe.withDefault "" model.query) )
 
         OnSelect item ->
             let

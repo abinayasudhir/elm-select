@@ -53,6 +53,7 @@ type alias Config msg item =
     , notFoundStyles : List Style
     , onQueryChange : Maybe (String -> msg)
     , onSelect : Maybe item -> msg
+    , onEnter: Maybe (String -> msg)
     , onFocus : Maybe msg
     , onRemoveItem : Maybe (item -> msg)
     , prompt : String
@@ -104,6 +105,7 @@ newConfig requiredConfig =
     , notFoundStyles = []
     , onQueryChange = Nothing
     , onSelect = requiredConfig.onSelect
+    , onEnter = Nothing
     , onFocus = Nothing
     , onRemoveItem = Nothing
     , prompt = ""

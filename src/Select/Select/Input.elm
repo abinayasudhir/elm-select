@@ -37,7 +37,7 @@ onKeyPressAttribute maybeItem =
 
                 13 ->
                     maybeItem
-                        |> Maybe.map (Decode.succeed << Msg.OnSelect)
+                        |> Maybe.map (Decode.succeed << Msg.OnEnter)
                         |> Maybe.withDefault (Decode.fail "nothing selected")
 
                 _ ->

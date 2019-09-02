@@ -12,3 +12,4 @@ type Msg item
     | OnUpArrow
     | OnQueryChange String
     | OnSelect item
+    | OnEnter item

@@ -127,7 +127,8 @@ update config msg model =
             in
             ( { model | highlightedItem = Nothing, query = Just value }, cmd )
 
-        OnEnter item ->
+
+        OnEnter ->
             ( model, onEnterCmd (Maybe.withDefault "" model.query) )
 
         OnSelect item ->

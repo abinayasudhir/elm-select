@@ -30,15 +30,16 @@ onKeyPressAttribute maybeItem =
     let
         fn code =
             case code of
-                9 ->
-                    maybeItem
-                        |> Maybe.map (Decode.succeed << Msg.OnSelect)
-                        |> Maybe.withDefault (Decode.fail "nothing selected")
+                -- 9 ->
+                --     maybeItem
+                --         |> Maybe.map (Decode.succeed << Msg.OnSelect)
+                --         |> Maybe.withDefault (Decode.fail "nothing selected")
 
                 13 ->
-                    maybeItem
-                        |> Maybe.map (Decode.succeed << Msg.OnEnter)
-                        |> Maybe.withDefault (Decode.fail "nothing selected")
+                    -- maybeItem
+                    --     |> Maybe.map (Decode.succeed << Msg.OnEnter)
+                    --     |> Maybe.withDefault (Decode.fail "nothing selected")
+                    Decode.succeed Msg.OnEnter
 
                 _ ->
                     Decode.fail "not TAB or ENTER"
@@ -59,8 +60,8 @@ onKeyUpAttribute maybeItem =
 
         fn code =
             case code of
-                13 ->
-                    selectItem
+                -- 13 ->
+                --     selectItem
 
                 38 ->
                     Decode.succeed Msg.OnUpArrow

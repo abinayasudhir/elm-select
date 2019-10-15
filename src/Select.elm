@@ -1,6 +1,6 @@
 module Select exposing
     ( RequiredConfig, Config, State, Msg
-    , newConfig, withCutoff, withOnQuery, withEmptySearch, withTransformQuery
+    , newConfig, withCutoff, withOnQuery, withEmptySearch, withTransformQuery, withBlur, withOnEnter, withMaxLength
     , withMultiSelection, withOnRemoveItem, withMultiInputItemContainerClass, withMultiInputItemContainerStyles, withMultiInputItemClass, withMultiInputItemStyles
     , withInputControlClass, withInputControlStyles
     , withInputWrapperClass, withInputWrapperStyles
@@ -14,7 +14,6 @@ module Select exposing
     , newState, queryFromState
     , view
     , update
-    , withBlur, withOnEnter
     )
 
 {-| Select input with auto-complete
@@ -31,7 +30,7 @@ See a full example of the select input in multi mode [here](https://github.com/s
 
 # Configuration
 
-@docs newConfig, withCutoff, withOnQuery, withEmptySearch, withTransformQuery, withBlur, withOnEnter
+@docs newConfig, withCutoff, withOnQuery, withEmptySearch, withTransformQuery, withBlur, withOnEnter, withMaxLength
 
 
 # Configure Multi Select mode
@@ -639,6 +638,21 @@ withOnEnter msg config =
             { c | onEnter = Just msg }
     in
     mapConfig fn config
+
+
+{-| Add a maximum length to the query Input field
+
+    Select.withMaxLength 50
+
+-}
+withMaxLength : Int -> Config msg item -> Config msg item
+withMaxLength limit config =
+    let
+        fn c =
+            { c | maxLength = Just limit }
+    in
+    mapConfig fn config
+
 
 {-| Add a callback for when the input field receives focus
 

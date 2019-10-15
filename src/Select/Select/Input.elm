@@ -8,12 +8,14 @@ import Html.Attributes
         , autocomplete
         , class
         , id
+        , maxlength
         , placeholder
         , style
         , value
         )
 import Html.Events exposing (keyCode, on, onFocus, onInput, stopPropagationOn)
 import Json.Decode as Decode
+import Maybe.Extra as Maybe
 import Select.Config exposing (Config)
 import Select.Events exposing (onBlurAttribute)
 import Select.Messages as Msg exposing (Msg)
@@ -34,7 +36,6 @@ onKeyPressAttribute maybeItem =
                 --     maybeItem
                 --         |> Maybe.map (Decode.succeed << Msg.OnSelect)
                 --         |> Maybe.withDefault (Decode.fail "nothing selected")
-
                 13 ->
                     -- maybeItem
                     --     |> Maybe.map (Decode.succeed << Msg.OnEnter)
@@ -62,7 +63,6 @@ onKeyUpAttribute maybeItem =
             case code of
                 -- 13 ->
                 --     selectItem
-
                 38 ->
                     Decode.succeed Msg.OnUpArrow
 
@@ -286,6 +286,11 @@ singleInput config model availableItems selectedItems maybeMatchedItems =
 inputAttributes : Config msg item -> State -> List item -> List item -> Maybe (List item) -> List (Html.Attribute (Msg item))
 inputAttributes config model availableItems selectedItems maybeMatchedItems =
     let
+        maxLengthAttr =
+            config.maxLength
+                |> Maybe.map maxlength
+                |> Maybe.toList
+
         inputClasses : String
         inputClasses =
             String.join " "
@@ -344,6 +349,7 @@ inputAttributes config model availableItems selectedItems maybeMatchedItems =
     , class inputClasses
     ]
         ++ inputStylesAttrs
+        ++ maxLengthAttr
 
 
 onClickWithoutPropagation : Msg item -> Attribute (Msg item)

@@ -41,6 +41,7 @@ type alias Config msg item =
     , itemStyles : List Style
     , itemHtml : Maybe (item -> Html Never)
     , isMultiSelect : Bool
+    , maxLength : Maybe Int
     , menuClass : String
     , menuStyles : List Style
     , multiInputItemContainerClass : String
@@ -53,7 +54,7 @@ type alias Config msg item =
     , notFoundStyles : List Style
     , onQueryChange : Maybe (String -> msg)
     , onSelect : Maybe item -> msg
-    , onEnter: Maybe (String -> msg)
+    , onEnter : Maybe (String -> msg)
     , onFocus : Maybe msg
     , onRemoveItem : Maybe (item -> msg)
     , prompt : String
@@ -75,9 +76,9 @@ newConfig requiredConfig =
     , clearClass = ""
     , clearStyles = []
     , clearSvgClass = ""
+    , cutoff = Nothing
     , emptySearch = False
     , filter = requiredConfig.filter
-    , cutoff = Nothing
     , hasClear = True
     , highlightedItemClass = ""
     , highlightedItemStyles = []
@@ -93,6 +94,7 @@ newConfig requiredConfig =
     , itemStyles = []
     , itemHtml = Nothing
     , isMultiSelect = False
+    , maxLength = Nothing
     , menuClass = ""
     , menuStyles = []
     , multiInputItemContainerClass = ""
